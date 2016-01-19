@@ -1,3 +1,15 @@
+/*
+ * Reads in 2 numbers from the user. It then prompts the user to
+ * ask which of the 2 numbers they would like to set to 0. We use
+ * a pointer (the variable 'z') to make the change. Then we print
+ * out the values of the variables.
+ *
+ * We could have done this without using pointers, but it wouldn't
+ * have been as fun or enlightening.
+ *
+ * Michael Burrell
+ */
+
 #include <stdio.h>
 
 int
