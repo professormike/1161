@@ -1,23 +1,23 @@
 #include <stdio.h>
 
 int
-foo(int x)
+bar(int x)
 {
 	x--;
 	return x;
 }
 
 int
-bar(int x)
+foo(int x)
 {
-	x = foo(x * 2);
+	x = bar(x * 2);
 	return x / 2;
 }
 
 int
 main(void)
 {
-	x = 3;
+	int x = 3;
 	foo(x);
 	printf("%d\n", x);
 	return 0;
