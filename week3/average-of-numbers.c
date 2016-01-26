@@ -8,6 +8,17 @@
 
 #include <stdio.h>
 
+static	// kind of like "private" in Java
+double
+average(double *x, int n)
+{
+	double sum = 0;
+	for (int i = 0; i < n; i++) {
+		sum += x[i];
+	}
+	return sum / n;	
+}
+
 int
 main(void)
 {
@@ -26,11 +37,7 @@ main(void)
 		}
 	}
 
-	double sum = 0;
-	for (int i = 0; i < n; i++) {
-		sum += x[i];
-	}
-	printf("The average is %lf\n", sum / n);
+	printf("The average is %lf\n", average(x, n));
 	return 0;
 }
 
