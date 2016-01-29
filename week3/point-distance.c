@@ -6,6 +6,13 @@ struct point {
 	double y;
 };
 
+static
+double
+distance(struct point p1, struct point p2)
+{
+	return sqrt(pow(p1.x - p2.x, 2) + pow(p1.y - p2.y, 2));
+}
+
 int
 main(void)
 {
@@ -18,8 +25,7 @@ main(void)
 	printf("Point 1 is at (%lf, %lf) and point 2 is at (%lf, %lf)\n",
 		p1.x, p1.y, p2.x, p2.y);
 	
-	double d = sqrt(pow(p1.x - p2.x, 2) + pow(p1.y - p2.y, 2));
-	printf("The distance between them is %lf\n", d);
+	printf("The distance between them is %lf\n", distance(p1, p2));
 
 	return 0;
 }
