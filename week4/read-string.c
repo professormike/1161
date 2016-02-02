@@ -19,5 +19,6 @@ main(void)
 	s[n] = '\0';
 
 	printf("%s\n", s);
+	free(s);
 	return 0;
 }
