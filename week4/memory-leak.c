@@ -13,8 +13,11 @@ read_name(void)
 int
 main(void)
 {
-	char *n;
+	char *n = NULL;
 	do {
+		if (n != NULL) {
+			free(n);
+		}
 		printf("Please enter your name: ");
 		n = read_name();
 		printf("Your name is %s\n", n);
