@@ -1,3 +1,10 @@
+/*
+ * Reads in a string from the user, making no assumptions
+ * about the maximum length of it, and prints it out
+ *
+ * Michael Burrell
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 
