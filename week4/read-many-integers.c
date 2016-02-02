@@ -1,3 +1,13 @@
+/*
+ * Reads in a series of integers from the user, until
+ * the user enters in a negative number. Then it prints
+ * them all out. We do not make any assumptions about
+ * the maximum number of integers the user will type in,
+ * so we use realloc
+ *
+ * Michael Burrell
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 
