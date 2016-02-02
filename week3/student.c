@@ -35,6 +35,7 @@ main(void)
 	// just for testing out the new_student function/constructor
 	struct student *s2 = new_student("Jane Jones", 12345);
 	printf("%s %d\n", s2->name, s2->student_no);
+	free(s2);	// avoid a memory leak
 
 	return 0;
 }
