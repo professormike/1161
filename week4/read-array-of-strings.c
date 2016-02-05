@@ -19,7 +19,36 @@ read_string(void)
 		i++;
 		if (r[i - 1] == '\n') {
 			r[i - 1] = '\0';
-			return 0;
+			return r;
 		}
 	}
 }
+
+int
+main(void)
+{
+	char **strings = malloc(1 * sizeof *strings);
+	int n = 0;
+	// each time through the loop, we will read in 1 string from
+	// the user and add it to our array of strings
+	for (int i = 0; i < 5; i++) {
+		strings[n] = read_string();
+		n++;
+		strings = realloc(strings, (n + 1) * sizeof *strings);
+	}
+
+	for (int i = 0; i < n; i++) {
+		printf("%s\n", strings[i]);
+	}
+
+	for (int i = 0; i < n; i++) {
+		free(strings[i]);
+	}
+	free(strings);
+
+	return 0;
+}
+
+
+
+
