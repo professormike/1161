@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 static
 char *
@@ -31,8 +32,12 @@ main(void)
 	int n = 0;
 	// each time through the loop, we will read in 1 string from
 	// the user and add it to our array of strings
-	for (int i = 0; i < 5; i++) {
+	while (1) {
 		strings[n] = read_string();
+		if (strcmp(strings[n], "exit") == 0) {
+			free(strings[n]);
+			break;
+		}
 		n++;
 		strings = realloc(strings, (n + 1) * sizeof *strings);
 	}
