@@ -1,6 +1,8 @@
 #ifndef INVENTORY_H
 #define INVENTORY_H
 
+#include <stdlib.h>
+
 struct item {
 	char name[20];
 	int quantity;
