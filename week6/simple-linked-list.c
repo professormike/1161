@@ -23,6 +23,23 @@ add_to_list(struct linked_list *l, int x)
 }
 
 void
+add_to_end_of_list(struct linked_list *l, int x)
+{
+	if (l->head == NULL) {
+		add_to_list(l, x);
+		return;
+	}
+	struct node *current_node = l->head;
+	while (current_node->next != NULL) {
+		current_node = current_node->next;
+	}
+	struct node *new_node = malloc(sizeof *new_node);
+	new_node->data = x;
+	new_node->next = NULL;
+	current_node->next = new_node;
+}
+
+void
 print_list(struct linked_list const *l)
 /*
  * Prints out each element in the linked list pointed to be 'l',
