@@ -26,8 +26,8 @@ print_list(struct linked_list const *l)
 {
 	struct node const *current_node = l->head;
 	while (current_node != NULL) {
-		printf("%d ", current->data);
-		current_node = current->next;
+		printf("%d ", current_node->data);
+		current_node = current_node->next;
 	}
 }
 
