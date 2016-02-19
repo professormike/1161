@@ -1,3 +1,4 @@
+#include <stdio.h>
 #include <stdlib.h>
 
 struct node {
@@ -30,5 +31,18 @@ print_list(struct linked_list const *l)
 		current_node = current_node->next;
 	}
 }
+
+int
+main(void)
+{
+	struct linked_list list = { .head = NULL };
+	add_to_list(&list, 5);
+	add_to_list(&list, 6);
+	add_to_list(&list, 7);
+	add_to_list(&list, 8);
+	print_list(&list);
+	return 0;
+}
+
 
 
