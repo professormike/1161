@@ -21,6 +21,9 @@ push(struct stack *s, char b)
 char
 pop(struct stack *s)
 {
+	if (s->head == NULL) {		// stack is empty
+		return '\0';
+	}
 	struct node *old_head = s->head;
 	char bracket_to_return = old_head->bracket;
 	s->head = old_head->next;
