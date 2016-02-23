@@ -31,23 +31,38 @@ pop(struct stack *s)
 	return bracket_to_return;
 }
 
+void
+free_stack(struct stack *s)
+{
+	struct node *n = s->head;
+	while (n != NULL) {
+		struct node *next = n->next;
+		free(n);
+		n = next;
+	}
+}
+
 int
 brackets_match(char const *s)
-// FIXME: memory leak if a mismatch is found
 {
 	struct stack t = { .head = NULL };
 	for (size_t i = 0; s[i] != '\0'; i++) {
 		if (s[i] == '(' || s[i] == '[' || s[i] == '{') {
 			push(&t, s[i]);
 		} else if (s[i] == ')' && pop(&t) != '(') {
+			free_stack(&t);
 			return 0;	// mismatch
 		} else if (s[i] == ']' && pop(&t) != '[') {
+			free_stack(&t);
 			return 0;
 		} else if (s[i] == '}' && pop(&t) != '{') {
+			free_stack(&t);
 			return 0;
 		}
 	}
-	return t.head == NULL;	// return true if the stack is now empty
+	int is_empty = t.head == NULL;
+	free_stack(&t);
+	return is_empty;
 }
 
 int
