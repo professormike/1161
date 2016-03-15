@@ -65,7 +65,7 @@ mergesort(int *array, size_t n)
 int
 main(void)
 {
-	int x[] = { 3, 0, 9, 4, 16, -5, 6, 2, 15, 3 };
+#include "big.h"
 	mergesort(x, sizeof x / sizeof *x);
 	for (size_t i = 0; i < sizeof x / sizeof *x; i++) {
 		printf("%d ", x[i]);
