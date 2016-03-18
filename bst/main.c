@@ -19,5 +19,6 @@ main(void)
 			printf("%d is NOT in the tree\n", i);
 		}
 	}
+	free_tree(&t);
 	return 0;
 }

@@ -58,3 +58,27 @@ insert_in_tree(struct tree *t, int x)
 	t->root = insert_node(t->root, x);
 }
 
+
+
+static
+void
+free_node(struct node *n)
+{
+	if (n == NULL) {
+		// do nothing
+	} else {
+		free_node(n->left);
+		free_node(n->right);
+		free(n);
+	}
+}
+
+void
+free_tree(struct tree *t)
+{
+	free_node(t->root);
+	t->root = NULL;
+}
+
+
+
