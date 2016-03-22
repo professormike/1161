@@ -9,6 +9,7 @@
 struct node {
 	int data;
 	struct node *left, *right;
+	int height;
 };
 
 static
@@ -34,6 +35,20 @@ search_in_tree(struct tree const *t, int x)
 
 
 static
+void
+calculate_height(struct node *n)
+{
+	int left = n->left == NULL ? 0 : n->left->height;
+	int right = n->right == NULL ? 0 : n->right->height;
+	if (right > left) {
+		n->height = right + 1;
+	} else {
+		n->height = left + 1;
+	}
+}
+
+
+static
 struct node *
 insert_node(struct node *n, int x)
 {
@@ -49,6 +64,7 @@ insert_node(struct node *n, int x)
 	} else if (x == n->data) {
 		// it already exists in the tree, so do nothing!
 	}
+	calculate_height(n);
 	return n;
 }
 
@@ -99,6 +115,9 @@ remove_node(struct node *n, int x)
 			// remove the node that we just copied from
 			n->left = remove_node(n->left, pred->data);
 		}
+	}
+	if (n != NULL) {
+		calculate_height(n);
 	}
 	return n;
 }
