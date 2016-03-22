@@ -5,6 +5,11 @@ int
 main(void)
 {
 	struct tree t = { .root = NULL };	// empty tree
+	for (int i = 1000000; i >= 0; i--) {
+		insert_in_tree(&t, i);
+	}
+	print_tree(&t);
+/*
 	insert_in_tree(&t, 12);
 	insert_in_tree(&t, 7);
 	insert_in_tree(&t, 20);
@@ -20,6 +25,7 @@ main(void)
 			printf("%d is NOT in the tree\n", i);
 		}
 	}
+*/
 	free_tree(&t);
 	return 0;
 }

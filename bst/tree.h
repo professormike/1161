@@ -13,5 +13,8 @@ void insert_in_tree(struct tree *, int);
 // removes the given int from an existing tree
 void remove_from_tree(struct tree *, int);
 
+// print out all nodes in a tree, in order (sorted)
+void print_tree(struct tree const *);
+
 // deallocates all nodes contained within a tree
 void free_tree(struct tree *);

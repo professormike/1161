@@ -5,6 +5,7 @@
 
 #include "tree.h"
 #include <stdlib.h>
+#include <stdio.h>
 
 struct node {
 	int data;
@@ -165,6 +166,25 @@ remove_from_tree(struct tree *t, int x)
 	t->root = remove_node(t->root, x);
 }
 
+
+static
+void
+print_node(struct node const *n)
+{
+	if (n == NULL) {
+		// do nothing
+	} else {
+		print_node(n->left);
+		printf("%d\n", n->data);
+		print_node(n->right);
+	}
+}
+
+void
+print_tree(struct tree const *t)
+{
+	print_node(t->root);
+}
 
 
 static
