@@ -12,6 +12,7 @@ main(void)
 	insert_in_tree(&t, 11);
 	insert_in_tree(&t, 14);
 	insert_in_tree(&t, 22);
+	remove_from_tree(&t, 12);
 	for (int i = 1; i <= 22; i++) {
 		if (search_in_tree(&t, i)) {
 			printf("%d is in the tree\n", i);
