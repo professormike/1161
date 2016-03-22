@@ -47,6 +47,42 @@ calculate_height(struct node *n)
 	}
 }
 
+static
+int
+balance_factor(struct node const *n)
+{
+	int left = n->left == NULL ? 0 : n->left->height;
+	int right = n->right == NULL ? 0 : n->right->height;
+	return right - left;
+}
+
+static
+struct node *
+rebalance(struct node *n)
+{
+	// LL imbalance
+	if (balance_factor(n) == -2 && balance_factor(n->left) < +1) {
+		// "before" diagram
+		struct node * const x = n,
+					* const y = x->left,
+					* const d = x->right,
+					* const z = y->left,
+					* const c = y->right,
+					* const a = z->left,
+					* const b = z->right;
+		// make it look like the "after" diagram
+		y->left = z;
+		y->right = x;
+		z->left = a;
+		z->right = b;
+		x->left = c;
+		x->right = d;
+		// y is the new root node
+		n = y;
+	}
+	return n;
+}
+
 
 static
 struct node *
@@ -65,7 +101,7 @@ insert_node(struct node *n, int x)
 		// it already exists in the tree, so do nothing!
 	}
 	calculate_height(n);
-	return n;
+	return rebalance(n);
 }
 
 void
@@ -118,6 +154,7 @@ remove_node(struct node *n, int x)
 	}
 	if (n != NULL) {
 		calculate_height(n);
+		n = rebalance(n);
 	}
 	return n;
 }
