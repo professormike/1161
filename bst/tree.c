@@ -61,6 +61,46 @@ static
 struct node *
 rebalance(struct node *n)
 {
+	// LR imbalance
+	if (balance_factor(n) == -2 && balance_factor(n->left) == +1) {
+		struct node * const x = n,
+					* const y = x->left,
+					* const d = x->right,
+					* const a = y->left,
+					* const z = y->right,
+					* const b = z->left,
+					* const c = z->right;
+		x->left = z;
+		x->right = d;
+		z->left = y;
+		z->right = c;
+		y->left = a;
+		y->right = b;
+		calculate_height(y);
+		calculate_height(z);
+		calculate_height(x);
+		n = x;
+	}
+	// RL imbalance
+	if (balance_factor(n) == +2 && balance_factor(n->right) == -1) {
+		struct node * const x = n,
+					* const y = x->right,
+					* const d = x->left,
+					* const a = y->right,
+					* const z = y->left,
+					* const b = z->right,
+					* const c = z->left;
+		x->right = z;
+		x->left = d;
+		z->right = y;
+		z->left = c;
+		y->right = a;
+		y->left = b;
+		calculate_height(y);
+		calculate_height(z);
+		calculate_height(x);
+		n = x;
+	}
 	// LL imbalance
 	if (balance_factor(n) == -2 && balance_factor(n->left) < +1) {
 		// "before" diagram
@@ -80,6 +120,32 @@ rebalance(struct node *n)
 		x->right = d;
 		// y is the new root node
 		n = y;
+		calculate_height(x);
+		calculate_height(z);
+		calculate_height(y);
+	}
+	// RR imbalance
+	if (balance_factor(n) == +2 && balance_factor(n->right) > -1) {
+		// "before" diagram
+		struct node * const x = n,
+					* const y = x->right,
+					* const d = x->left,
+					* const z = y->right,
+					* const c = y->left,
+					* const a = z->right,
+					* const b = z->left;
+		// make it look like the "after" diagram
+		y->right = z;
+		y->left = x;
+		z->right = a;
+		z->left = b;
+		x->right = c;
+		x->left = d;
+		// y is the new root node
+		n = y;
+		calculate_height(x);
+		calculate_height(z);
+		calculate_height(y);
 	}
 	return n;
 }
