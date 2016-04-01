@@ -2,13 +2,16 @@
 
 unsigned int
 hash_string(char const *x)
+// courtesy of Clifton
 {
-	int s = x[0];
+	unsigned int s = 0;
+	int fiba = 1;
+	int fibb = 1;
 	for (size_t i = 1; x[i] != '\0'; i++) {
-		s -= x[i];
-	}
-	if (s < 0) {
-		s = -s;
+		s += x[i] * fibb;
+		int c = fiba + fibb;
+		fiba = fibb;
+		fibb = c;
 	}
 	return s;
 }
