@@ -1,5 +1,5 @@
 CFLAGS += -Wall -g
 
-hash-table:	hash.o main.o
+hash-table:	chaining.o main.o
 	$(CC) -o $@ $^
 
